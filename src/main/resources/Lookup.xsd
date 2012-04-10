@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://captechventures.com/schema"
+	elementFormDefault="qualified" xmlns="http://captechventures.com/schema"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.1"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="user">
+		<xs:complexType>
+			<xs:sequence minOccurs="1" maxOccurs="1">
+				<xs:element name="UserId" type="xs:int" maxOccurs="1"
+					minOccurs="1"></xs:element>
+				<xs:element name="UserName" type="xs:string" maxOccurs="1"
+					minOccurs="0"></xs:element>
+				<xs:element name="ShoeSize" type="xs:string" maxOccurs="1"
+					minOccurs="0"></xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UserList">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>
+					Response to a member info request. The request is via rest so there is no
+					corresponding member info request object
+				</xs:documentation>
+			</xs:annotation>
+
+			<xs:sequence>
+				<xs:element name="entry" type="userEntryListType"
+					minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="userEntryListType">
+		<xs:sequence>
+			<xs:element name="UserId" type="xs:int" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="UserName" type="xs:string" maxOccurs="1"
+				minOccurs="0"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
