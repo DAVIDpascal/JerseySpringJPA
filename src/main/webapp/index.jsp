@@ -67,13 +67,13 @@
 
     $(document).ready(function() {
         
-        $('#target').submit(function() {
-  			alert('Handler for .submit() called.');
+        $('#person-form').submit(function() {
+  			//alert('Handler for .submit() called.');
  			var id = $("#ident").val();
  			var name =$("#nom").val();
  			var age = $("#age").val();
  			var pers = new Personne(id, name, age);
- 			alert(JSON.stringify(pers));
+ 			//alert(JSON.stringify(pers));
  			$.ajax({
                     type: "POST",
                     contentType: "application/json; charset=utf-8",
