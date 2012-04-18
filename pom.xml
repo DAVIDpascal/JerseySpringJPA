@@ -94,25 +94,34 @@
 		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-surefire-plugin</artifactId>
-			<configuration>
-			<!--
-			Skip the normal tests, we'll run them in the integration-test
-			phase
-			-->
-			<skip>true</skip>
-			</configuration>
+			<version>2.12</version>
+			    <configuration>
+					 <classpathDependencyExcludes>
+            			<classpathDependencyExcludes>org.springframework:spring-core</classpathDependencyExcludes>
+            			<classpathDependencyExcludes>org.springframework:spring-beans</classpathDependencyExcludes>
+            			<classpathDependencyExcludes>org.springframework:spring-context</classpathDependencyExcludes>
+            			<classpathDependencyExcludes>org.springframework:spring-web</classpathDependencyExcludes>
+            			<classpathDependencyExcludes>org.springframework:spring-aop</classpathDependencyExcludes>
+          			</classpathDependencyExcludes>
+					<classpathDependencyScopeExclude>compile,runtime,test</classpathDependencyScopeExclude>
+					<!--
+					Skip the normal tests, we'll run them in the integration-test
+					phase
+					-->
+					<skip>true</skip>
+				</configuration>
 			<executions>
-			<execution>
-			<phase>integration-test</phase>
-			<goals>
-			<goal>test</goal>
-			</goals>
-			<configuration>
-			<skip>false</skip>
-			</configuration>
-			</execution>
+			   <execution>
+				  <phase>integration-test</phase>
+					<goals>
+						<goal>test</goal>
+					</goals>
+					<configuration>
+						<skip>false</skip>
+					</configuration>
+				</execution>
 			</executions>
-		</plugin>
+		  </plugin>
    		</plugins>
 	</build>
 	<properties>
