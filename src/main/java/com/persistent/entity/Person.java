@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +16,16 @@ public class Person {
 	private int id;
 	private String name;
 	private int age;
+	private Address address;
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	@OneToOne(mappedBy="locataire")
+	public Address getAddress() {
+		return address;
+	}
 
 	public void setId(int id) {
 		this.id = id;
