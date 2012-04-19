@@ -22,7 +22,7 @@ public class Address {
 	private int code;
 	protected Person locataire;
 	
-	@OneToOne
+	@OneToOne 
 	@JoinColumn(name="ID_PERSON", referencedColumnName = "ID")
 	public Person getLocataire() {
 		return locataire;
