@@ -1,5 +1,6 @@
 package com.persistent.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
@@ -22,7 +23,7 @@ public class Person {
 		this.address = address;
 	}
 
-	@OneToOne(mappedBy="locataire")
+	@OneToOne(mappedBy="locataire",cascade={CascadeType.PERSIST, CascadeType.MERGE})
 	public Address getAddress() {
 		return address;
 	}
