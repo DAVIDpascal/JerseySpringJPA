@@ -25,7 +25,8 @@
 
 </form>
  <h1>Personne</h1>
- <form id="person-form">
+ 
+<form id="person-form">
   <table>
   <tr>
    <td>
@@ -51,12 +52,41 @@
 	<input type="text" id="age" value="" />
    </td>
   </tr>
+  </table>
+ <h1>Adresse</h1>
+ <table>
+  <tr>
+   <td>
+   <input type="label" value="Voie :" />
+   </td>
+   <td>
+   <input type="text" id="voie" value="" />
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <input type="label" value="Code Postale :" /> 
+   </td>
+   <td>
+	<input type="text" id="code" value="" />
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <input type="label" value="Ville :" /> 
+   </td>
+    <td>
+	<input type="text" id="ville" value="" />
+   </td>
+  </tr>
    <tr align="right">
    <td colspan="2">
     <input type="submit" value="Valider" />
    </td>
   </tr>
   </table>
+ 
+ 
  </form>
 
  <script type="text/javascript">
@@ -72,13 +102,20 @@
  			var id = $("#ident").val();
  			var name =$("#nom").val();
  			var age = $("#age").val();
- 			var pers = new Personne(id, name, age);
- 			//alert(JSON.stringify(pers));
+ 			var voie = $("#voie").val();
+ 			var code =$("#code").val();
+ 			var ville = $("#ville").val();
+			var pers = new Personne(id, name, age);
+ 			
+ 			var id_adr="1";
+			var adr = new Adresse (id_adr,voie,code,ville);
+			var pers2 = new Personne2(id, name, age, adr);
+			alert(JSON.stringify(pers2));
  			$.ajax({
                     type: "POST",
                     contentType: "application/json; charset=utf-8",
                     url: "http://localhost:8080/jerseySpringJPA/webresources/v2/person",
-                    data: JSON.stringify(pers),
+                    data: JSON.stringify(pers2),
                     dataType: "json"
                 });
  			
@@ -112,11 +149,20 @@
     });
 	
     
-    function Adresse (codePostal, ville) {
-        this.codePostal = codePostal;
-        this.ville = ville;        
+    function Adresse (id,voie, code, ville) {
+        this.id = id;
+        this.voie = voie;
+        this.code = code;
+		this.ville = ville;        
     }
     
+	function Personne2 (id, name, age, address) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.address = address;         
+    }
+	
     function Personne (id, name, age) {
         this.id = id;
         this.name = name;
